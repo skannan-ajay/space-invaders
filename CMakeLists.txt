@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.30.0)
 project(space-invaders)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 
 # Link with pthread library 
@@ -35,9 +35,16 @@ include_directories(${OPENGL_INCLUDE_DIR})
 include_directories(${GLFW_INCLUDE_DIRS})
 include_directories(${GLEW_INCLUDE_DIRS})
 
+# subdirs
+add_subdirectory(lib)
+
+# Target
 add_executable(SpaceInvaders main.cpp)
+
+# Link flags
 target_link_libraries(SpaceInvaders 
     PRIVATE
+    Shader
     glfw
     GLEW::GLEW
     ${OPENGL_LIBRARIES}
